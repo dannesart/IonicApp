@@ -1,0 +1,165 @@
+<ion-header no-border class="ion-no-border p-2.5">
+  <div
+    class="p-8 bg-primary-default rounded-br-[3rem] shadow-lg -mt-2.5 -ml-2.5 -mr-2.5"
+  >
+    <ng-container>
+      <ion-avatar
+        class="rounded-[20px] w-14 h-14 border-2 border-tertiary-shade overflow-hidden bg-tertiary-default mb-1 text-light-default mt-3"
+      >
+        <!-- <ion-icon name="person-outline"></ion-icon> -->
+        <img
+          [src]="'/assets/images/polar-bear-avatar.jpeg'"
+          class="object-cover scale-125"
+        />
+      </ion-avatar>
+
+      <h3
+        class="text-base text-light-default"
+        *ngIf="user$ | async as user; else noUser"
+      >
+        Hello, {{ user.firstName || "Anon" }}!
+      </h3>
+      <ng-template #noUser>
+        <ion-skeleton-text
+          [animated]="true"
+          class="h-6 w-28 rounded-full"
+        ></ion-skeleton-text>
+      </ng-template>
+
+      <div class="mt-5 flex justify-between" *ngIf="wallet$ | async as wallet">
+        <div class="">
+          <h1
+            class="balance overflow-hidden text-ellipsis whitespace-nowrap max-w-xs"
+          >
+            <ion-skeleton-text
+              [animated]="true"
+              class="h-10 w-32 rounded-full"
+              *ngIf="wallet.getting; else balance"
+            ></ion-skeleton-text>
+            <ng-template #balance>
+              <!-- TODO:: -->
+              {{
+                wallet.balance[preferredCurrency.value] || wallet.balance || 0
+                  | currency: preferredCurrency.symbol
+              }}
+            </ng-template>
+          </h1>
+          <h3 class="text">Your Balance</h3>
+        </div>
+        <div class="" *ngIf="(currencies$ | async) as currencies">
+          <ion-select
+            class="font-bold text-3xl text-light-default"
+            placeholder="Switch"
+            (ionChange)="onCurrencyChange($event)"
+            value="{{ preferredCurrency.value }}"
+          >
+            <ion-select-option
+              *ngFor="let currency of currencies"
+              [value]="currency.value"
+            >
+              {{ currency.assetSymbol }}
+            </ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content> </ion-refresher-content>
+  </ion-refresher>
+  <div class="h-full">
+    <div class="flex justify-around px-8 py-8 gap-4">
+      <div
+        class="p-4 text-light-default text-sm bg-primary-default rounded-3xl flex-1 shadow-lg"
+        (click)="goToSendMoney()"
+      >
+        <ion-icon name="share-outline" class="w-7 h-7 mb-2"></ion-icon>
+        <p>Send Money</p>
+      </div>
+      <div
+        class="p-4 text-light-default bg-tertiary-default text-sm rounded-3xl flex-1 shadow-lg"
+        (click)="goToRecieveMoney()"
+      >
+        <ion-icon name="download-outline" class="w-7 h-7 mb-2"></ion-icon>
+        <p>Request Money</p>
+      </div>
+      <!-- <div
+        class="p-4 text-primary-default text-sm rounded-3xl flex-1 shadow-lg"
+        (click)="startScan()"
+      >
+        <ion-icon name="qr-code-outline" class="w-7 h-7 mb-2"></ion-icon>
+        <p>Scan to Pay</p>
+      </div> -->
+    </div>
+
+    <section class="px-8">
+      <div class="activity-header">
+        <h1 class="activity-title">Activity</h1>
+        <h1 class="activity-view-all">View All</h1>
+      </div>
+      <div
+        class="flex gap-1 flex-col mt-4"
+        *ngIf="transactions$ | async as transactions"
+      >
+        <ng-container *ngIf="transactions.length; else noTransactions">
+          <div
+            class="p-4 rounded-3xl shadow-lg bg-white flex gap-6 max-w-full"
+            *ngFor="let transactionInfo of transactions"
+          >
+            <div class="w-8 h-8 rounded-full self-center text-center">
+              {{ initalsFromName(transactionInfo) }}
+            </div>
+
+            <div
+              class="text-2xl max-w-full overflow-hidden text-ellipsis whitespace-nowrap"
+            >
+              <p
+                class="overflow-hidden text-ellipsis whitespace-nowrap max-w-full"
+              >
+                {{
+                  transactionByUser(transactionInfo.from?._id)
+                    ? transactionInfo.to?.firstName || "Anon"
+                    : transactionInfo.from?.firstName || "Anon"
+                }}
+              </p>
+              <span class="text-sm text-dark-default block">
+                {{ transactionInfo.message || "No message" }}
+              </span>
+            </div>
+            <div class="text-success-default text-right ml-auto">
+              <span
+                [ngClass]="{
+                  'text-success-default': !transactionByUser(
+                    transactionInfo.from?._id
+                  ),
+                  'text-danger-default': transactionByUser(
+                    transactionInfo.from?._id
+                  )
+                }"
+              >
+                {{
+                  transactionInfo.amount | currency: transactionInfo.currency
+                }}
+              </span>
+              <span class="text-sm text-dark-default block">{{
+                transactionInfo.date | date: "dd/MM hh:mm"
+              }}</span>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noTransactions>
+          <div
+            class="p-4 px-8 rounded-3xl shadow-lg bg-white flex gap-1 justify-between"
+          >
+            <div class="text-lg">
+              <p>No transactions</p>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </section>
+  </div>
+</ion-content>

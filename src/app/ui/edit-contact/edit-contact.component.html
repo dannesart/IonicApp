@@ -1,0 +1,63 @@
+<ion-header no-border class="ion-no-border p-2.5">
+  <ion-toolbar>
+    <ion-title color="dark">Edit contact</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" fill="clear" color="tertiary">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-grid class="h-full p-8">
+    <ion-row>
+      <ion-col>
+        <p-input
+          [value]="mobileNumber"
+          [label]="'Phone number'"
+          [placeholder]="'+xx xx xxxxxxx'"
+          [disabled]="true"
+          [id]="'phonenumber'"
+          [type]="'text'"
+        ></p-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p-input
+          [value]="firstName"
+          [label]="'First name'"
+          [placeholder]="'Name'"
+          (valueChange)="onChange('firstName', $event)"
+          [id]="'firstName'"
+          [type]="'text'"
+        ></p-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p-input
+          [value]="lastName"
+          [label]="'Last name'"
+          [placeholder]="'Name'"
+          (valueChange)="onChange('lastName', $event)"
+          [id]="'lastName'"
+          [type]="'text'"
+        ></p-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button
+          class="button"
+          expand="block"
+          (click)="saveContactOnClick()"
+          class="ion-activatable ripple-parent w-full text-lg m-0 mt-8"
+          >Save
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

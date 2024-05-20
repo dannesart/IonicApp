@@ -1,0 +1,12 @@
+<div class="icon">
+  <ion-icon [name]="iconByStatus(transfer.status)"> </ion-icon>
+</div>
+<div class="content">
+  <h3>Contract info</h3>
+  <time>
+    {{ transfer.expiration | date }}
+  </time>
+</div>
+<div class="price">
+  {{ transfer.amount | currency: "EUR" }}
+</div>

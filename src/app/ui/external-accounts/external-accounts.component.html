@@ -1,0 +1,72 @@
+<ion-header no-border class="ion-no-border p-6">
+  <ion-toolbar>
+    <ion-title color="dark">Your accounts</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" fill="clear" color="tertiary">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid *ngIf="wallet$ | async as wallet">
+    <ion-row>
+      <ion-col>
+        <div
+          *ngIf="
+            wallet.externalAccounts && wallet.externalAccounts.length;
+            else noExternals
+          "
+        >
+          <ion-card
+            *ngFor="let account of wallet.externalAccounts"
+            class="shadow-none relative"
+            color="light"
+          >
+            <ion-card-header>
+              <ion-card-title>
+                {{ account.alias }}
+              </ion-card-title>
+              <ion-card-subtitle class="absolute right-4 top-4" color="success">
+                <ion-text color="success">
+                  <p>{{ account.status }}</p>
+                </ion-text>
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-text>
+                <p>{{ account.iban }}</p>
+              </ion-text>
+            </ion-card-content>
+          </ion-card>
+        </div>
+        <ng-template #noExternals>
+          <ion-card color="warning" class="my-0 shadow-none">
+            <ion-card-content class="text-4xl">
+              <ion-text class="text-base max-w-full block">
+                No accounts
+              </ion-text>
+            </ion-card-content>
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-card>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border p-4">
+  <ion-toolbar>
+    <ion-button
+      class="button"
+      expand="full"
+      size="large"
+      shape="round"
+      (click)="addNewAccunt()"
+      class="ion-activatable ripple-parent"
+      >Add account
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

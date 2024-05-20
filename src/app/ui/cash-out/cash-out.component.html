@@ -1,0 +1,104 @@
+<ion-header no-border class="ion-no-border p-6">
+  <ion-toolbar>
+    <ion-title color="dark">Withdraw money</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" fill="clear" color="tertiary">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="cardCashOut$ | async as cardCashOutStep">
+    <ng-container *ngIf="cardCashOutStep.idx == 0">
+      <!-- Step 1. Select amount -->
+      <ion-grid *ngIf="wallet$ | async as wallet">
+        <ion-row>
+          <ion-col align-self-center size-xs="12">
+            <p-input
+              [label]="'Amount (€)'"
+              [style]="{ 'margin-bottom': '20px' }"
+              [placeholder]="'Set amount'"
+              [type]="'numberSelect'"
+              [value]="amount$ | async"
+              (valueChange)="handleChange($event)"
+            ></p-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col align-self-center size-xs="12">
+            <ion-item lines="none">
+              <ion-label position="stacked" [color]="'dark'"
+                >Select account</ion-label
+              >
+              <ion-select
+                [value]="account$ | async"
+                *ngIf="
+                  wallet.externalAccounts && wallet.externalAccounts.length;
+                  else noAccounts
+                "
+                (ionChange)="handleAccountChange($event)"
+              >
+                <ion-select-option
+                  *ngFor="let account of wallet.externalAccounts"
+                  [value]="account.externalIban"
+                >
+                  {{ account.alias }}
+                </ion-select-option>
+              </ion-select>
+              <ng-template #noAccounts>
+                <ion-card
+                  [color]="'warning'"
+                  (click)="noAccountHandler()"
+                  class="my-0 shadow-none"
+                >
+                  <ion-card-content>
+                    No accounts. Please go to accounts settings and add an
+                    account.
+                  </ion-card-content>
+                </ion-card>
+              </ng-template>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col align-self-center size-xs="12" class="p-4">
+            <ion-button
+              color="primary"
+              size="large"
+              expand="block"
+              [disabled]="
+                !wallet.externalAccounts || !wallet.externalAccounts.length
+              "
+              (click)="setCardCashInStep(1)"
+              >Withdraw</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+
+    <ng-container *ngIf="cardCashOutStep.idx == 1">
+      <!-- Step 2. Handle card information -->
+      <ion-spinner name="crescent"></ion-spinner>
+
+      <!-- <ion-button color="primary" expand="block" (click)="setCardCashInStep(2)"
+        >Klart</ion-button
+      > -->
+    </ng-container>
+
+    <ng-container *ngIf="cardCashOutStep.idx == 2">
+      <ion-text color="success">
+        <h3 class="text-center p-4">Complete!</h3>
+      </ion-text>
+    </ng-container>
+
+    <ng-container *ngIf="cardCashOutStep.idx == 3">
+      {{ error$ | async }}
+      <ion-button color="primary" expand="block" (click)="setCardCashInStep(0)"
+        >Test again</ion-button
+      >
+    </ng-container>
+  </ng-container>
+</ion-content>

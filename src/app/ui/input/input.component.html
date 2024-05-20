@@ -1,0 +1,184 @@
+<ion-item
+  lines="none"
+  [id]="type == types.date ? 'open-modal' : ''"
+  color="transparent"
+  class="text-light w-full p-0"
+>
+  <ion-label
+    position="stacked"
+    [color]="isValid ? 'text-light' : 'danger'"
+    *ngIf="label"
+    >{{ label }}</ion-label
+  >
+  <!-- Regular input (ex. text, number) -->
+  <ion-input
+    *ngIf="
+      type != types.numberSelect &&
+      type != types.user &&
+      type != types.date &&
+      type != types.phone &&
+      type != types.code &&
+      type != types.amount
+    "
+    class="border-2 rounded-lg pl-2 mt-2 text-2xl"
+    [ngClass]="{
+      'border-primary-default': isFocus,
+      'border-light-shade': !isFocus
+    }"
+    [disabled]="disabled"
+    [type]="type"
+    [value]="currentValue"
+    [autofocus]="autoFocus"
+    [placeholder]="placeholder"
+    [clearInput]="clearInput"
+    (input)="handleInputChange($event)"
+    (ionFocus)="setFocus(true)"
+    (ionBlur)="setFocus(false)"
+  ></ion-input>
+
+  <!-- Amount -->
+  <div class="flex flex-row gap-2" *ngIf="type === types.amount">
+    
+    <ion-input
+      class="border-2 rounded-lg pl-2 mt-2 text-2xl"
+      [ngClass]="{
+        'border-primary-default': isFocus,
+        'border-light-shade': !isFocus
+      }"
+      [disabled]="disabled"
+      [type]="'number'"
+      [value]="currentValue"
+      [autofocus]="autoFocus"
+      [placeholder]="placeholder"
+      [clearInput]="clearInput"
+      (input)="handleInputChange($event)"
+      (ionFocus)="setFocus(true)"
+      (ionBlur)="setFocus(false)"
+    ></ion-input>
+    <select [value]="currentCurrency" (change)="handleCurrencyChange($event)" class=" rounded-lg px-2 mt-2 text-2xl bg-light-default appearance-none">
+      <option [value]="currency.value" *ngFor="let currency of currencies">
+        {{ currency.assetSymbol }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Phone -->
+  <div class="flex flex-row gap-2" *ngIf="type === types.phone">
+    <select
+      (change)="handleCountryChange($event)"
+      [value]="currentPhone"
+      class="w-24 bg-light-default mt-2 appearance-none rounded-lg px-2 outline-none"
+    >
+      <option
+        [value]="country.phone"
+        *ngFor="let country of countries"
+        class="text-lg"
+        [selected]="currentPhone == country.phone"
+      >
+        {{ country.emoji }} (+{{ country.phone }})
+      </option>
+    </select>
+
+    <ion-input
+      class="border-2 rounded-lg pl-2 mt-2 text-2xl flex-1"
+      [ngClass]="{
+        'border-primary-default': isFocus,
+        'border-light-shade': !isFocus
+      }"
+      [disabled]="disabled"
+      [type]="'tel'"
+      [value]="currentValue"
+      [autofocus]="autoFocus"
+      [placeholder]="'NN NNNNNNN'"
+      [clearInput]="clearInput"
+      (input)="handleInputChange($event)"
+      (ionFocus)="setFocus(true)"
+      (ionBlur)="setFocus(false)"
+    ></ion-input>
+  </div>
+
+  <!-- Code -->
+  <ion-input
+    *ngIf="type === types.code"
+    class="border-2 rounded-lg pl-2 mt-2 text-2xl"
+    [ngClass]="{
+      'border-primary-default': isFocus,
+      'border-light-shade': !isFocus
+    }"
+    [disabled]="disabled"
+    [type]="'tel'"
+    [value]="currentValue"
+    [autofocus]="autoFocus"
+    [placeholder]="placeholder"
+    [clearInput]="clearInput"
+    (input)="handleInputChange($event)"
+    (ionFocus)="setFocus(true)"
+    (ionBlur)="setFocus(false)"
+  ></ion-input>
+
+  <!-- Select -->
+  <ion-select
+    value="0"
+    *ngIf="type == types.numberSelect"
+    (ionChange)="handleInputChange($event)"
+  >
+    <ion-select-option
+      value="{{ i * 50 }}"
+      *ngFor="let value of [].constructor(21); let i = index"
+    >
+      {{ i * 50 }}
+    </ion-select-option>
+  </ion-select>
+
+  <!-- User-->
+  <ng-container *ngIf="type == types.user">
+    <ion-input
+      [color]="'dark'"
+      [disabled]="disabled"
+      [value]="currentValue"
+      [placeholder]="placeholder"
+      [clearInput]="clearInput"
+      (input)="handleInputChange($event)"
+    ></ion-input>
+  </ng-container>
+
+  <!-- Datetime in overlay -->
+  <ng-container *ngIf="type == types.date">
+    <!-- <ion-icon icon="calendar-outline" slot="start" color="primary"></ion-icon> -->
+    <ion-text>{{
+      (value | date: "MMM d, y, h:mm a") || "Select date"
+    }}</ion-text>
+  </ng-container>
+</ion-item>
+
+<ion-item
+  lines="none"
+  [style]="{ 'margin-bottom': '20px' }"
+  *ngIf="type == types.user"
+>
+  <ion-label color="medium">Save to contacts</ion-label>
+  <ion-checkbox
+    [color]="saveToContact ? 'dark' : 'medium'"
+    slot="end"
+    [(ngModel)]="saveToContact"
+  ></ion-checkbox>
+</ion-item>
+
+<ion-modal
+  [breakpoints]="[0.5]"
+  [initialBreakpoint]="0.5"
+  *ngIf="type == types.date"
+  trigger="open-modal"
+>
+  <ng-template #name>
+    <ion-content>
+      <ion-datetime
+        size="cover"
+        [value]="currentValue"
+        presentation="date-time"
+        showDefaultButtons="true"
+        (ionChange)="handleInputChange($event)"
+      ></ion-datetime>
+    </ion-content>
+  </ng-template>
+</ion-modal>

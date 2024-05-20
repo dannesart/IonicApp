@@ -1,0 +1,35 @@
+<ion-list>
+  <ion-menu-toggle>
+    <ion-item
+      button
+      [routerLink]="['/' + Routes.wallet]"
+      *ngIf="canSeeRoute(Routes.wallet)"
+    >
+      <ion-icon name="wallet-outline" slot="start"></ion-icon>
+      <ion-label>Min plånbok</ion-label>
+    </ion-item>
+  </ion-menu-toggle>
+  <ion-menu-toggle>
+    <ion-item
+      button
+      [routerLink]="['/' + Routes.profile]"
+      *ngIf="canSeeRoute(Routes.profile)"
+    >
+      <ion-icon name="cog-outline" slot="start"></ion-icon>
+      <ion-label> Mina inställningar </ion-label>
+    </ion-item>
+  </ion-menu-toggle>
+
+  <ion-menu-toggle>
+    <ion-item
+      button
+      [routerLink]="['/' + Routes.contracts]"
+      *ngIf="canSeeRoute(Routes.contracts)"
+    >
+      <ion-icon name="receipt-outline" slot="start"></ion-icon>
+      <ion-label>Mina kontrakt</ion-label>
+    </ion-item>
+  </ion-menu-toggle>
+
+  <ng-content></ng-content>
+</ion-list>

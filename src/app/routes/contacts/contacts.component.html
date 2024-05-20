@@ -1,0 +1,79 @@
+<ion-header no-border class="ion-no-border p-2.5">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class="text-xs" (click)="goBack()">
+        <ion-icon name="arrow-back-outline" class="text-black"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center text-base text-black" color="dark">
+      Contacts
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="text-black text-xs" (click)="addNewContact()">
+        <ion-icon name="add-outline" class="text-black"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="p-2">
+    <ion-searchbar 
+      class="-mb-6"
+      (ionChange)="searchQuery = $event.target.value" 
+      placeholder="Enter name or phone number">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <section class="flex-1 px-8 py-4">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <div class="flex gap-1 flex-col" *ngIf="user.contacts$ | async as contacts">
+      <ng-container *ngIf="contacts.length; else noContacts">
+        <div
+          class="p-4 rounded-3xl shadow-lg bg-white flex gap-3 justify-between"
+          *ngFor="
+            let user of contacts
+              | filter: 'firstName||mobilePhone||lastName':searchQuery;
+            let i = index
+          "
+        >
+          <div class="w-8 h-8 rounded-full self-center text-center">NA</div>
+          <div
+            class="text-2xl"
+            (click)="
+              editContact(user.firstName, user.lastName, user.mobilePhone, i)
+            "
+          >
+            <p>{{ user.firstName || "Anon" }} {{ user.lastName }}</p>
+            <span class="text-sm text-dark-default block">{{
+              user.mobilePhone
+            }}</span>
+          </div>
+          <div class="flex flex-col gap-3 py-2">
+            <ion-icon
+              [name]="user.favorite ? 'star' : 'star-outline'"
+              class="w-6 h-6"
+              (click)="toggleFavorite(user, i)"
+            ></ion-icon>
+
+            <ion-icon
+              [name]="'remove-circle-outline'"
+              class="w-6 h-6"
+              (click)="remove(user, i)"
+            ></ion-icon>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noContacts>
+        <div
+          class="p-4 px-8 rounded-3xl shadow-lg bg-white flex gap-1 justify-between"
+        >
+          <div class="text-lg">
+            <p>No contacts</p>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+</ion-content>

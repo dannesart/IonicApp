@@ -1,0 +1,42 @@
+<ion-header no-border class="ion-no-border p-6">
+  <ion-toolbar>
+    <ion-title color="dark">New payment</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" fill="clear" color="tertiary">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p-input
+          [label]="'Reciever'"
+          [placeholder]="'Type a phone number'"
+          [value]="phone$ | async"
+          [type]="'user'"
+          (valueChange)="handleChange($event, 'phone')"
+        ></p-input>
+
+        <p-input
+          [label]="'Amount (€)'"
+          [style]="{ 'margin-bottom': '20px' }"
+          [placeholder]="'Set amount'"
+          [type]="'numberSelect'"
+          [value]="amount$ | async"
+          (valueChange)="handleChange($event, 'amount')"
+        ></p-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col align-self-center size-xs="12" class="p-4">
+        <ion-button size="large" expand="block" (click)="sendPayment()">
+          Send payment
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

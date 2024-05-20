@@ -1,0 +1,53 @@
+<ion-header no-border class="ion-no-border py-6">
+  <ion-toolbar>
+    <ion-title color="dark">Add new account</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" fill="clear" color="tertiary">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p-input
+          [value]="accountNumber$ | async"
+          (valueChange)="updateAccountNumber($event)"
+          [label]="'Account number'"
+          [placeholder]="'Account number'"
+          [id]="'accountnumber'"
+          [type]="'text'"
+        ></p-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p-input
+          [value]="accountName$ | async"
+          (valueChange)="updateAccountName($event)"
+          [label]="'Account name'"
+          [placeholder]="'Account name'"
+          [id]="'accountname'"
+          [type]="'text'"
+        ></p-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button
+          class="button"
+          expand="full"
+          size="large"
+          shape="round"
+          (click)="addNewAccount()"
+          class="ion-activatable ripple-parent"
+          >Add
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

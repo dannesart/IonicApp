@@ -1,0 +1,109 @@
+<ion-grid fixed="true" class="mt-2.5">
+  <ion-row class="mx-4 my-2">
+    <ion-col align-self-center size-xs="12">
+      <ion-text color="medium">
+        <h2>A verification code has been sent to your phone.</h2>
+      </ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row color="primary" justify-content-center>
+    <ion-col align-self-center size-xs="12">
+      <div class="code">
+        <input
+          type="text"
+          pattern="\d*"
+          id="code-1"
+          maxlength="1"
+          autocomplete="off"
+          (input)="handleCodeInput($event, 1)"
+          #code1
+        />
+        <input
+          type="text"
+          pattern="\d*"
+          id="code-2"
+          maxlength="1"
+          autocomplete="off"
+          (input)="handleCodeInput($event, 2)"
+          #code2
+        />
+        <input
+          type="text"
+          pattern="\d*"
+          id="code-3"
+          maxlength="1"
+          autocomplete="off"
+          (input)="handleCodeInput($event, 3)"
+          #code3
+        />
+        <input
+          type="text"
+          pattern="\d*"
+          id="code-4"
+          maxlength="1"
+          autocomplete="off"
+          (input)="handleCodeInput($event, 4)"
+          #code4
+        />
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="text-center">
+    <ion-button
+      class="button mb-6"
+      [ngClass]="{ loading: (sendingVerification$ | async) }"
+      [expand]="'full'"
+      size="large"
+      shape="round"
+      [color]="(sendingVerification$ | async) ? 'medium' : 'primary'"
+      (click)="handleClick('verify')"
+    >
+      <ion-text *ngIf="!(sendingVerification$ | async)">Verify</ion-text>
+      <ion-spinner
+        *ngIf="sendingVerification$ | async"
+        name="crescent"
+        color="light"
+      ></ion-spinner>
+    </ion-button>
+    <ion-button
+      class="button"
+      expand="full"
+      [ngClass]="{ loading: (sendingNewRequest$ | async) }"
+      size="large"
+      shape="round"
+      fill="clear"
+      [color]="(sendingNewRequest$ | async) ? 'medium' : 'primary'"
+      (click)="handleClick('newRequest')"
+    >
+      <ion-text *ngIf="!(sendingNewRequest$ | async)">Send new code</ion-text>
+      <ion-spinner
+        *ngIf="sendingNewRequest$ | async"
+        name="crescent"
+        color="primary"
+      ></ion-spinner>
+    </ion-button>
+
+    <!--
+
+ <ion-button
+        class="button"
+        expand="full"
+        size="large"
+        shape="round"
+        color="light"
+        (click)="handleClick('newRequest')"
+      >
+        Send new code
+      </ion-button>
+      <ng-container *ngIf="sendingNewRequest$ | async">
+        Sending...
+      </ng-container>
+      <ng-container *ngIf="sendingNewRequestError$ | async as error">
+        Error: {{ error }}
+      </ng-container>
+
+    -->
+  </ion-toolbar>
+</ion-footer>

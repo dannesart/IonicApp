@@ -1,0 +1,27 @@
+.button {
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  width: 100%;
+
+  &.loading {
+    width: 100px;
+  }
+}
+
+.code {
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+
+  input {
+    flex: 1 1 0;
+    width: 100%;
+    min-width: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    font-size: 40px;
+    text-align: center;
+    background-color: var(--ion-color-secondary);
+    color: var(--ion-color-secondary-contrast);
+  }
+}

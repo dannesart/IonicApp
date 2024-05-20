@@ -1,0 +1,36 @@
+<ion-content fullscreen="true">
+  <ion-grid class="text-center relative top-8">
+    <ion-row>
+      <ion-col align-self-center size-xs="12">
+        <app-image [image]="image" *ngIf="image$ | async as image"></app-image>
+        <br />
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center class="mb-6">
+      <ion-col align-self-center size-xs="12">
+        <ion-text color="medium">
+          <h1 class="text-2xl">There was an error while loading the app.</h1>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-xs="12">
+        <ion-text class="text-lg">
+          <h2>Please restart the app or come back later</h2>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row class="mt-10">
+      <ion-col>
+        <ion-button
+          color="primary"
+          size="large"
+          expand="block"
+          (click)="goToStart()"
+        >
+          Go back
+        </ion-button>
+      </ion-col>
+    </ion-row> -->
+  </ion-grid>
+</ion-content>

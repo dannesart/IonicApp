@@ -1,0 +1,42 @@
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content> </ion-refresher-content>
+  </ion-refresher>
+
+  <section class="absolute inset-0 top-10 text-center safe-space-m">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col
+          align-self-center
+          size-xs="12"
+          *ngIf="contracts$ | async as contracts"
+        >
+          <ion-card
+            color="warning"
+            *ngIf="!contracts.contracts.length"
+            class="shadow-none"
+          >
+            <ion-card-content class="text-4xl">
+              <ion-text class="text-base max-w-full block">
+                There is no contracts yet. Let's start peyya!
+              </ion-text>
+            </ion-card-content>
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-card>
+
+          <mini-contract
+            *ngFor="let contract of contracts.contracts"
+            [contract]="contract"
+          ></mini-contract>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
+  <!-- fab placed to the top start -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" (click)="presentNewContractModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

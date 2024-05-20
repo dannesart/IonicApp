@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Peyya</title>
+
+    <base href="/">
+
+    <meta name="color-scheme" content="light dark">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <link rel="icon" type="image/png" href="assets/icon/favicon.png">
+
+    <!-- add to homescreen for ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <script>
+      (function (apiKey) {
+        (function (p, e, n, d, o) {
+          var v, w, x, y, z;
+          o = p[d] = p[d] || {};
+          o._q = o._q || [];
+          v = ["initialize", "identify", "updateOptions", "pageLoad", "track"];
+          for (w = 0, x = v.length; w < x; ++w)
+            (function (m) {
+              o[m] =
+                o[m] ||
+                function () {
+                  o._q[m === v[0] ? "unshift" : "push"](
+                    [m].concat([].slice.call(arguments, 0))
+                  );
+                };
+            })(v[w]);
+          y = e.createElement(n);
+          y.async = !0;
+          y.src = "https://cdn.pendo.io/agent/static/" + apiKey + "/pendo.js";
+          z = e.getElementsByTagName(n)[0];
+          z.parentNode.insertBefore(y, z);
+        })(window, document, "script", "pendo");
+      })("f16c4e6a-c8fb-4090-4cdf-abf37446b67f");
+    </script>
+
+    <script type="text/javascript">
+      (window.heap = window.heap || []),
+        (heap.load = function (e, t) {
+          (window.heap.appid = e), (window.heap.config = t = t || {});
+          var r = document.createElement("script");
+          (r.type = "text/javascript"),
+            (r.async = !0),
+            (r.src = "https://cdn.heapanalytics.com/js/heap-" + e + ".js");
+          var a = document.getElementsByTagName("script")[0];
+          a.parentNode.insertBefore(r, a);
+          for (
+            var n = function (e) {
+                return function () {
+                  heap.push(
+                    [e].concat(Array.prototype.slice.call(arguments, 0))
+                  );
+                };
+              },
+              p = [
+                "addEventProperties",
+                "addUserProperties",
+                "clearEventProperties",
+                "identify",
+                "resetIdentity",
+                "removeEventProperty",
+                "setEventProperties",
+                "track",
+                "unsetEventProperty",
+              ],
+              o = 0;
+            o < p.length;
+            o++
+          )
+            heap[p[o]] = n(p[o]);
+        });
+      heap.load("3037541887");
+    </script>
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#1976d2">
+  <style>:root{--ion-color-primary:#5c74ff;--ion-color-primary-rgb:92, 116, 255;--ion-color-primary-contrast:#ffffff;--ion-color-primary-contrast-rgb:255, 255, 255;--ion-color-primary-shade:#5166e0;--ion-color-primary-tint:#6c82ff;--ion-color-secondary:#5459d9;--ion-color-secondary-rgb:84, 89, 217;--ion-color-secondary-contrast:#ffffff;--ion-color-secondary-contrast-rgb:255, 255, 255;--ion-color-secondary-shade:#4a4ebf;--ion-color-secondary-tint:#656add;--ion-color-tertiary:#0b2540;--ion-color-tertiary-rgb:66, 76, 179;--ion-color-tertiary-contrast:#ffffff;--ion-color-tertiary-contrast-rgb:255, 255, 255;--ion-color-tertiary-shade:#3a439e;--ion-color-tertiary-tint:#555ebb;--ion-color-success:#5cff8d;--ion-color-success-rgb:92, 255, 141;--ion-color-success-contrast:#000000;--ion-color-success-contrast-rgb:0, 0, 0;--ion-color-success-shade:#51e07c;--ion-color-success-tint:#6cff98;--ion-color-warning:#fff15c;--ion-color-warning-rgb:255, 241, 92;--ion-color-warning-contrast:#000000;--ion-color-warning-contrast-rgb:0, 0, 0;--ion-color-warning-shade:#a79e41;--ion-color-warning-tint:#fff26c;--ion-color-danger:#ff5c5c;--ion-color-danger-rgb:255, 92, 92;--ion-color-danger-contrast:#000000;--ion-color-danger-contrast-rgb:0, 0, 0;--ion-color-danger-shade:#e05151;--ion-color-danger-tint:#ff6c6c;--ion-color-medium:#a0afc0;--ion-color-medium-rgb:160, 175, 192;--ion-color-medium-contrast:#000000;--ion-color-medium-contrast-rgb:0, 0, 0;--ion-color-medium-shade:#8d9aa9;--ion-color-medium-tint:#aab7c6;--ion-color-light:#f7f7ff;--ion-color-light-rgb:247, 247, 255;--ion-color-light-contrast:#000000;--ion-color-light-contrast-rgb:0, 0, 0;--ion-color-light-shade:#d9d9e0;--ion-color-light-tint:#f8f8ff;--ion-background-color:#fcfcfe;--ion-toolbar-background:var(--ion-background-color);--border-width:0px;--ion-color-dark:#243656;--ion-color-dark-rgb:34, 36, 40;--ion-color-dark-contrast:#ffffff;--ion-color-dark-contrast-rgb:255, 255, 255;--ion-color-dark-shade:#1e2023;--ion-color-dark-tint:#383a3e}html{--ion-font-family:var(--ion-default-font)}body{background:var(--ion-background-color)}@supports (padding-top: 20px){html{--ion-safe-area-top:var(--ion-statusbar-padding)}}@supports (padding-top: constant(safe-area-inset-top)){html{--ion-safe-area-top:constant(safe-area-inset-top);--ion-safe-area-bottom:constant(safe-area-inset-bottom);--ion-safe-area-left:constant(safe-area-inset-left);--ion-safe-area-right:constant(safe-area-inset-right)}}@supports (padding-top: env(safe-area-inset-top)){html{--ion-safe-area-top:env(safe-area-inset-top);--ion-safe-area-bottom:env(safe-area-inset-bottom);--ion-safe-area-left:env(safe-area-inset-left);--ion-safe-area-right:env(safe-area-inset-right)}}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}html{width:100%;height:100%;-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;text-size-adjust:100%}html:not(.hydrated) body{display:none}body{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;margin:0;padding:0;position:fixed;width:100%;max-width:100%;height:100%;max-height:100%;transform:translateZ(0);text-rendering:optimizeLegibility;overflow:hidden;touch-action:manipulation;-webkit-user-drag:none;-ms-content-zooming:none;word-wrap:break-word;overscroll-behavior-y:none;-webkit-text-size-adjust:none;-moz-text-size-adjust:none;text-size-adjust:none}html{font-family:var(--ion-default-font);font-family:var(--ion-font-family)}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}:before,:after{--tw-content:""}html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"}body{margin:0;line-height:inherit}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));--tw-pan-x:var(--tw-empty, );--tw-pan-y:var(--tw-empty, );--tw-pinch-zoom:var(--tw-empty, );--tw-touch-action:var(--tw-pan-x) var(--tw-pan-y) var(--tw-pinch-zoom);--tw-scroll-snap-strictness:proximity;border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);--tw-backdrop-blur:var(--tw-empty, );--tw-backdrop-brightness:var(--tw-empty, );--tw-backdrop-contrast:var(--tw-empty, );--tw-backdrop-grayscale:var(--tw-empty, );--tw-backdrop-hue-rotate:var(--tw-empty, );--tw-backdrop-invert:var(--tw-empty, );--tw-backdrop-opacity:var(--tw-empty, );--tw-backdrop-saturate:var(--tw-empty, );--tw-backdrop-sepia:var(--tw-empty, );--tw-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}*,:before,:after{--tw-ordinal:var(--tw-empty, );--tw-slashed-zero:var(--tw-empty, );--tw-numeric-figure:var(--tw-empty, );--tw-numeric-spacing:var(--tw-empty, );--tw-numeric-fraction:var(--tw-empty, );--tw-font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}</style><link rel="stylesheet" href="styles.e4fa674af75b5d7b.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.e4fa674af75b5d7b.css"></noscript></head>
+
+  <body has-bouncing="false" overflow-scroll="false">
+    <app-root></app-root>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <script src="runtime.083482d624e852a7.js" type="module"></script><script src="polyfills.f19cc2c9af3074da.js" type="module"></script><script src="main.1f86cbd4ca9de0ed.js" type="module"></script>
+
+</body></html>

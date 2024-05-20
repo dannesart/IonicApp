@@ -1,0 +1,50 @@
+<ion-header no-border class="ion-no-border p-2.5">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class="text-xs" (click)="close()">
+        <ion-icon name="arrow-back-outline" class="text-black"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" color="dark"> Recieve money </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="h-full">
+    <ng-container *ngIf="user$ | async as user">
+      <div class="p-8">
+        <p-input
+          [type]="'amount'"
+          [label]="'Amount'"
+          [currencies]="currencies$ | async"
+          [placeholder]="'Amount'"
+          (valueChange)="setAmount($event)"
+        ></p-input>
+        <!-- <p-input
+          [label]="'Amount'"
+
+          [placeholder]="'Amount'"
+          (valueChange)="setAmount($event)"
+        ></p-input> -->
+      </div>
+
+      <qr-code
+        value="peyya.receive.{{ user.mobilePhone }}.value.{{ value }}"
+        size="250"
+        class="flex justify-center"
+        errorCorrectionLevel="M"
+      ></qr-code>
+
+      <span class="my-2 block text-sm text-center">or use</span>
+
+      <ion-card class="my-0 mt-6 shadow-none text-center" button>
+        <ion-card-content class="text-2xl text-tertiary-default">
+          {{ user.mobilePhone }}
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </div>
+</ion-content>
+<ion-footer class="p-8">
+  <ion-button expand="block" (click)="close()">Close</ion-button>
+</ion-footer>

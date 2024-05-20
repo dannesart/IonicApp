@@ -1,0 +1,63 @@
+<ion-header no-border class="ion-no-border p-6">
+  <ion-toolbar>
+    <ion-title color="dark">Deposit money</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" fill="clear" color="tertiary">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="cardCashIn$ | async as cardCashInStep">
+    <ng-container *ngIf="cardCashInStep.idx == 0">
+      <!-- Step 1. Select amount -->
+      <ion-grid>
+        <ion-row>
+          <ion-col align-self-center size-xs="12">
+            <p-input
+              [label]="'Amount (€)'"
+              [style]="{ 'margin-bottom': '20px' }"
+              [placeholder]="'Set amount'"
+              [type]="'numberSelect'"
+              [value]="amount$ | async"
+              (valueChange)="handleChange($event)"
+            ></p-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col align-self-center size-xs="12" class="p-4">
+            <ion-button
+              color="primary"
+              size="large"
+              expand="block"
+              (click)="setCardCashInStep(1)"
+              >Deposit</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+
+    <ng-container *ngIf="cardCashInStep.idx == 1">
+      <!-- Step 2. Handle card information -->
+      <ng-container *ngIf="cardCashInFrame$ | async as frame">
+        <iframe [src]="frame | safe" class="frame"></iframe>
+      </ng-container>
+
+      <!-- <ion-button color="primary" expand="block" (click)="setCardCashInStep(2)"
+        >Klart</ion-button
+      > -->
+    </ng-container>
+
+    <ng-container *ngIf="cardCashInStep.idx == 2"> Done! </ng-container>
+
+    <ng-container *ngIf="cardCashInStep.idx == 3">
+      {{ error$ | async }}
+      <ion-button color="primary" expand="block" (click)="setCardCashInStep(0)"
+        >Try again</ion-button
+      >
+    </ng-container>
+  </ng-container>
+</ion-content>

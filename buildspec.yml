@@ -1,0 +1,21 @@
+version: 0.2
+env:
+  variables:
+    APP_NAME: "	Peyya_App_Build"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16.x
+    commands:
+      - echo install process started
+      - npm install --force && npm install -g @angular/cli --force && npm install -g @ionic/cli --force
+  build:
+    commands:
+      - echo build process started now
+      - npm run build
+  post_build:
+    commands:
+      - echo build process finished, we should uplload to S3 now
+      - cd www
+      - ls -la
+      - aws s3 sync . s3://peyya-app-bucket --delete --debug

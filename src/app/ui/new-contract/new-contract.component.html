@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="dark" slot="start">Create new contract</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" fill="clear" color="tertiary">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true" *ngIf="contract$ | async as contract">
+  <ion-card color="danger" *ngIf="contract.error" class="my-0 shadow-none">
+    <ion-card-content>
+      {{ contract.error }}
+    </ion-card-content>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p-input
+          [value]="description$ | async"
+          (valueChange)="updateValue($event, 'description')"
+          [label]="'Description'"
+          [placeholder]="'...'"
+        ></p-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p-input
+          [label]="'Contract part'"
+          [placeholder]="'+xx xx xxxxxxx'"
+          [value]="targetPeyya$ | async"
+          [type]="'user'"
+          (valueChange)="updateValue($event, 'targetPeyya')"
+        ></p-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p-input
+          [label]="'Amount (€)'"
+          [placeholder]="'Set amount'"
+          [type]="'numberSelect'"
+          [value]="amount$ | async"
+          (valueChange)="updateValue($event, 'amount')"
+        ></p-input>
+      </ion-col>
+    </ion-row>
+    <ion-row class="text-center">
+      <ion-col>
+        <p-input
+          [value]="expirationDate$ | async"
+          (valueChange)="updateValue($event, 'expirationDate')"
+          [type]="'date'"
+          [label]="'Expiration date'"
+          [placeholder]="'Expiration date'"
+        ></p-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col align-self-center size-xs="12" class="p-4">
+        <ion-button
+          class="button"
+          size="large"
+          expand="block"
+          (click)="createContract()"
+          [ngClass]="{ loading: contract.creating }"
+          [color]="contract.creating ? 'medium' : 'primary'"
+        >
+          <ng-container *ngIf="!contract.creating; else spinner">
+            Create contract
+          </ng-container>
+          <ng-template #spinner>
+            <ion-spinner name="crescent" color="light"></ion-spinner>
+          </ng-template>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

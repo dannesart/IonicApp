@@ -1,0 +1,31 @@
+<ion-header no-border class="ion-no-border p-6">
+  <ion-toolbar>
+    <ion-title color="primary">Settings</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" fill="clear" color="tertiary">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-grid fixed="true">
+    <ion-row> </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border p-4">
+  <ion-toolbar>
+    <ion-button
+      class="button"
+      expand="full"
+      size="large"
+      shape="round"
+      color="danger"
+      (click)="logOut()"
+      class="ion-activatable ripple-parent"
+      >Log out
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

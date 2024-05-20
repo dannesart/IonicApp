@@ -1,0 +1,25 @@
+<app-header [isLoggedIn]="true">
+  <ion-button
+    slot="end"
+    class="button"
+    fill="clear"
+    color="tertiary"
+    (click)="logOut()"
+  >
+    Log out
+  </ion-button>
+</app-header>
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="activeState$ | async as state">
+    <app-complete-account
+      (onComplete)="handleCompleteAccountSuccess($event)"
+      (onError)="handleCompleteAccountError($event)"
+      *ngIf="state.name == userStatus.notcompleted"
+    ></app-complete-account>
+    <app-verify-phone
+      (onComplete)="handleVerifySuccess($event)"
+      (onError)="handleVerifyError($event)"
+      *ngIf="state.name == userStatus.pendingVerification"
+    ></app-verify-phone>
+  </ng-container>
+</ion-content>

@@ -1,0 +1,46 @@
+PODS:
+  - Capacitor (3.4.0):
+    - CapacitorCordova
+  - CapacitorApp (1.1.0):
+    - Capacitor
+  - CapacitorBrowser (1.0.7):
+    - Capacitor
+  - CapacitorCommunityAppIcon (2.0.4):
+    - Capacitor
+  - CapacitorCommunityBarcodeScanner (2.1.1):
+    - Capacitor
+  - CapacitorCordova (3.4.0)
+
+DEPENDENCIES:
+  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
+  - "CapacitorBrowser (from `../../node_modules/@capacitor/browser`)"
+  - "CapacitorCommunityAppIcon (from `../../node_modules/@capacitor-community/app-icon`)"
+  - "CapacitorCommunityBarcodeScanner (from `../../node_modules/@capacitor-community/barcode-scanner`)"
+  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+
+EXTERNAL SOURCES:
+  Capacitor:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorApp:
+    :path: "../../node_modules/@capacitor/app"
+  CapacitorBrowser:
+    :path: "../../node_modules/@capacitor/browser"
+  CapacitorCommunityAppIcon:
+    :path: "../../node_modules/@capacitor-community/app-icon"
+  CapacitorCommunityBarcodeScanner:
+    :path: "../../node_modules/@capacitor-community/barcode-scanner"
+  CapacitorCordova:
+    :path: "../../node_modules/@capacitor/ios"
+
+SPEC CHECKSUMS:
+  Capacitor: 8e3b84d09c7b599d8d19d48ab121320cb7058953
+  CapacitorApp: c927de41f3853ffcccf5944090af8b501cf7ba9b
+  CapacitorBrowser: b4ee622a4003e0360b2cbcbd17550b3b1f56203e
+  CapacitorCommunityAppIcon: 2edc4a5983158cce2523c6fde420faaa0372f80d
+  CapacitorCommunityBarcodeScanner: bea57c113f36d86a12407d4094a1e6211f4e8b1e
+  CapacitorCordova: b1af29a04884895a52d00050de49a330a9cece30
+
+PODFILE CHECKSUM: 75b8e5930707210d54ee73f94a5b00c54c4e85e8
+
+COCOAPODS: 1.11.3

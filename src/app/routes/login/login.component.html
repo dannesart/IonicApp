@@ -1,0 +1,62 @@
+<div class="flex flex-col h-full items-center justify-center bg-light p-8">
+  <app-image
+    class="mx-auto mb-8"
+    [image]="image"
+    *ngIf="logoImage$ | async as image"
+  ></app-image>
+
+  <ion-row *ngIf="!enableVerifyStep" class="w-full mb-4">
+    <ion-col class="flex flex-col gap-8">
+      <p-input
+        class="w-full"
+        [label]="'Phone Number'"
+        [placeholder]="'xxxxxxxxx'"
+        [type]="types.phone"
+        [autoFocus]="false"
+        [disabled]="loading"
+        (valueChange)="updateValue($event, 'phoneNumber')"
+      ></p-input>
+
+      <ion-button
+        (click)="sendVerificationCode()"
+        color="primary"
+        expand="block"
+        *ngIf="!enableVerifyStep"
+        class="w-full text-lg m-0"
+      >
+        <ng-container *ngIf="!loading; else loader"> Verify </ng-container>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="enableVerifyStep" class="w-full mb-4">
+    <ion-col class="flex flex-col gap-8">
+      <p-input
+        class="w-full"
+        [label]="'Code'"
+        [disabled]="loading"
+        [value]="verificationCode$ | async"
+        [type]="types.code"
+        [autoFocus]="true"
+        [placeholder]="'XXXXXX'"
+        (valueChange)="updateValue($event, 'code')"
+      ></p-input>
+
+      <ion-button
+        (click)="verifyCode()"
+        color="primary"
+        expand="block"
+        *ngIf="enableVerifyStep"
+        class="w-full text-lg m-0"
+      >
+        <ng-container *ngIf="!loading; else loader">
+          Send Verifiation Code
+        </ng-container>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</div>
+
+<ng-template #loader>
+  <ui-loader></ui-loader>
+</ng-template>

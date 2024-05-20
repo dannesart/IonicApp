@@ -1,0 +1,19 @@
+:host {
+  ion-header {
+    padding: 20px 10px;
+  }
+}
+
+.button {
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  width: 100%;
+
+  &.loading {
+    width: 100px;
+  }
+}
+
+ion-toolbar:last-of-type {
+  --border-width: 0px;
+}

@@ -1,0 +1,28 @@
+:host {
+  box-shadow: 2px 8px 48px -16px rgb(21 70 160 / 10%);
+  background: var(--ion-color-light, #f4f5f8) !important;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 1rem;
+  display: grid;
+  grid-template-areas: "icon content price";
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 32px;
+  align-items: center;
+  color: var(--ion-color-dark);
+
+  .icon {
+    grid-area: icon;
+    ion-icon {
+      font-size: 32px;
+    }
+  }
+  .content {
+    grid-area: content;
+  }
+  .price {
+    grid-area: price;
+    font-size: 13px;
+    color: var(--ion-color-success);
+  }
+}

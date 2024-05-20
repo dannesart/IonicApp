@@ -1,0 +1,20 @@
+<ion-header no-border class="ion-no-border">
+  <ion-toolbar>
+    <ng-container *ngIf="page.getPage() as p">
+      <ion-buttons slot="start" *ngIf="p.showBack">
+        <ion-back-button
+          [text]="'Back'"
+          defaultHref="/wallet"
+        ></ion-back-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center" color="dark" *ngIf="p.showTitle">
+        {{ p.title }}
+      </ion-title>
+    </ng-container>
+
+    <!-- <ion-text class="ion-text-center">
+      <app-image [image]="image" *ngIf="image$ | async as image"></app-image>
+    </ion-text> -->
+    <ng-content></ng-content>
+  </ion-toolbar>
+</ion-header>

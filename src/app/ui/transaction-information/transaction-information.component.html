@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">Transaction</ion-title>
+    <ion-buttons slot="end" color="light">
+      <ion-button (click)="close()"> Close </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<section class="container">
+  Transaction information
+
+  <ion-grid fixed="true">
+    <ion-row *ngIf="movement.errorReason">
+      <ion-col align-self-center size-xs="12">
+        <ion-text color="medium">
+          <h3>Message</h3>
+        </ion-text>
+        <ion-text>
+          {{ movement.errorReason }}
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="movement as transactions">
+      <ion-col align-self-center size-xs="12">
+        <div class="transactions">
+          <div
+            class="transaction bg-white p-4 rounded text-left"
+            *ngFor="let transaction of transactions"
+          >
+            <ion-text color="primary">
+              <h3 class="transaction-header">
+                Transaction id:
+                {{ transaction.dltTransactionId }}
+              </h3>
+            </ion-text>
+            <ion-text color="medium">
+              <h4 class="transaction-subheader">
+                Token adress:
+                {{ transaction.tokenAddress }}
+              </h4>
+            </ion-text>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</section>

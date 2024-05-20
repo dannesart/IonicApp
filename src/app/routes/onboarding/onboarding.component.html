@@ -1,0 +1,55 @@
+<ion-header no-border class="ion-no-border p-2.5">
+  <ion-toolbar>
+    <ion-title class="ion-text-center text-base text-black" color="dark">
+      Onboarding
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="h-full p-8">
+    <ion-row class="w-full mb-10">
+      <h1 class="text-3xl font-bold">
+        Create your <br />
+        account
+      </h1>
+    </ion-row>
+    <ion-row class="w-full mb-4">
+      <ion-col>
+        <p-input
+          class="w-full"
+          [label]="'First Name'"
+          [value]="firstName$ | async"
+          [type]="'text'"
+          [clearInput]="true"
+          [placeholder]="'First Name'"
+          (valueChange)="updateValue($event, 'firstName')"
+        ></p-input>
+        <ion-note *ngIf="errorObj['firstName']" color="danger">
+          {{ errorObj["firstName"] }}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="w-full mb-4">
+      <ion-col>
+        <p-input
+          class="w-full"
+          [label]="'Last Name'"
+          [value]="lastName$ | async"
+          [type]="'text'"
+          [placeholder]="'Last Name'"
+          [clearInput]="true"
+          (valueChange)="updateValue($event, 'lastName')"
+        ></p-input>
+        <ion-note *ngIf="errorObj['lastName']" color="danger">
+          {{ errorObj["lastName"] }}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+
+<ion-footer class="p-8">
+  <ion-button expand="block" (click)="save()">Create</ion-button>
+</ion-footer>

@@ -1,0 +1,28 @@
+<ion-content [fullscreen]="true" ion-fixed forceOverscroll="false">
+  <ion-progress-bar
+    type="indeterminate"
+    *ngIf="!(pageFullyLoaded$ | async)"
+  ></ion-progress-bar>
+
+  <ng-container
+    *ngIf="
+      {
+        isError: isError$ | async
+      } as complete;
+      else loading
+    "
+  >
+    <!-- <app-header [isLoggedIn]="true" [user]="{}"></app-header> -->
+
+    <ion-router-outlet
+      id="main"
+      id="main"
+      [animation]="animation"
+    ></ion-router-outlet>
+
+    <app-footer></app-footer>
+  </ng-container>
+  <ng-template #loading>
+    <ion-spinner></ion-spinner>
+  </ng-template>
+</ion-content>

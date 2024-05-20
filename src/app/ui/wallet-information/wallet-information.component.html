@@ -1,0 +1,24 @@
+<ion-header no-border class="ion-no-border p-6">
+  <ion-toolbar>
+    <ion-title color="primary">Information</ion-title>
+    <ion-buttons slot="end" color="light">
+      <ion-button (click)="close()"> Close </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-grid fixed="true">
+    <ion-row>
+      <ion-col align-self-center size-xs="12">
+        <ion-list>
+          <ion-item *ngFor="let item of walletInformation | keyvalue">
+            <ion-label>
+              <h2>{{ item.value }}</h2>
+              <h3>{{ item.key }}</h3>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

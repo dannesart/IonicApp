@@ -1,0 +1,68 @@
+<ion-grid fixed="true" class="mt-2.5">
+  <ion-row class="mx-4 my-2">
+    <ion-col align-self-center size-xs="12">
+      <ion-text color="medium">
+        <h2>To be able to use the app, we need some further information</h2>
+      </ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row color="primary" justify-content-center>
+    <ion-col align-self-center size-xs="12">
+      <p-input
+        [label]="'Firstname'"
+        [placeholder]="'First name'"
+        [disabled]="true"
+        [value]="(userState$ | async)?.given_name"
+      ></p-input>
+      <p-input
+        [label]="'Lastname'"
+        [placeholder]="'Last name'"
+        [disabled]="true"
+        [value]="(userState$ | async)?.family_name"
+      ></p-input>
+      <p-input
+        [label]="'Email'"
+        [placeholder]="'Email'"
+        [disabled]="true"
+        [value]="(userState$ | async)?.email"
+        (valueChange)="handleInputChange('email', $event.target.value)"
+      ></p-input>
+      <p-input
+        [label]="'Mobile'"
+        [type]="'phone'"
+        [disabled]="loading$ | async"
+        [placeholder]="'Mobile number'"
+        [value]="(userState$ | async)?.mobilePhone"
+        (valueChange)="handleInputChange('mobilePhone', $event.target.value)"
+      ></p-input>
+    </ion-col>
+  </ion-row>
+  <ion-row class="mx-4 my-4">
+    <ion-col align-self-center size-xs="12">
+      <ion-text color="tertiary">
+        <h2>By creating an account you agree to the terms of agreement</h2>
+      </ion-text>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="text-center" *ngIf="userState$ | async as userState">
+    <ion-button
+      class="button"
+      [ngClass]="{ loading: (loading$ | async) }"
+      [expand]="'full'"
+      size="large"
+      shape="round"
+      [color]="(loading$ | async) ? 'medium' : 'primary'"
+      (click)="handleClick(userState)"
+    >
+      <ion-text *ngIf="!(loading$ | async)">Create account</ion-text>
+      <ion-spinner
+        *ngIf="loading$ | async"
+        name="crescent"
+        color="light"
+      ></ion-spinner>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

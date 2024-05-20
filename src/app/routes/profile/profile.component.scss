@@ -1,0 +1,32 @@
+:root {
+  --backdrop-opacity: 1;
+}
+
+.round-button {
+  --padding-end: 8px;
+  --padding-start: 8px;
+}
+
+.loader-container {
+  z-index: 100;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-avatar {
+  background: var(--ion-color-tertiary);
+  color: var(--ion-color-tertiary-contrast);
+  width: 100px;
+  height: 100px;
+}
+
+ion-item {
+  --ion-safe-area-left: 0;
+  --padding-start: 0;
+}

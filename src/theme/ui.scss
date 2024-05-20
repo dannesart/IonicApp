@@ -1,0 +1,8 @@
+ion-modal {
+  --backdrop-opacity: var(--ion-backdrop-opacity, 0.4);
+}
+
+ion-backdrop {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0.6;
+}

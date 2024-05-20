@@ -1,0 +1,28 @@
+.transactions {
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+
+  .transaction {
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+
+    &-header {
+      display: block;
+      margin: 0px;
+      font-size: 80%;
+    }
+
+    &-subheader {
+      display: block;
+      margin: 0px;
+      font-size: 80%;
+    }
+  }
+}
+
+ion-item {
+  --ion-safe-area-left: 0;
+  --padding-start: 0;
+}

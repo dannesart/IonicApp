@@ -1,0 +1,6 @@
+:root {
+  --backdrop-opacity: 1;
+}
+:host {
+  padding-top: var(--ion-safe-area-top);
+}

@@ -1,0 +1,42 @@
+<div id="container">
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-center size-xs="12">
+        <app-image [image]="logo" *ngIf="logo$ | async as logo"></app-image>
+        <br />
+        <app-image [image]="image" *ngIf="image$ | async as image"></app-image>
+        <br />
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-xs="12">
+        <!-- <ion-text color="medium" *ngIf="auth.getProfileState() | async as user">
+          <h4>Welcome, {{user.firstName}} {{user.lastName}}</h4>
+        </ion-text> -->
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-xs="12">
+        <ion-card
+          button
+          (click)="openNewPayment()"
+          color="primary"
+          class="shadow-none"
+        >
+          <ion-card-content>
+            <ion-text class="text-xl max-w-full block"> Let's Peyya! </ion-text>
+          </ion-card-content>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-lg="4" size-xs="12">
+        <ion-button color="primary" fill="clear" size="large" expand="block"
+          >Scan QR-code
+          <ion-icon slot="start" name="qr-code-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

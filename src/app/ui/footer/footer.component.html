@@ -1,0 +1,22 @@
+<ion-footer class="ion-no-border" *ngIf="!page.getPage().hideFooter">
+  <ion-toolbar>
+    <ion-button
+      *ngFor="let button of footerActions"
+      [color]="isActive(button.route) ? button.activeColor : button.color"
+      [fill]="isActive(button.route) ? 'clear' : 'clear'"
+      size="large"
+      (click)="goTo(button.route)"
+    >
+      <!-- <ion-text>
+        <small>
+          {{ button.label }}
+        </small>
+      </ion-text> -->
+      <!-- <ion-badge *ngIf="button.badge" [color]="button.badge.color">
+        {{ button.badge.number }}
+      </ion-badge> -->
+      <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+      <ion-icon slot="icon-only" [name]="button.icon"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

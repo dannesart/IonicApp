@@ -1,0 +1,21 @@
+.button {
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+
+  &.loading {
+    width: 100px;
+  }
+}
+
+.login-btn {
+  margin: 20px 12px 12px;
+}
+
+.bg {
+  background: linear-gradient(
+      0deg,
+      rgba(96, 120, 255, 0.2),
+      rgba(96, 120, 255, 0.2)
+    ),
+    #6078ff;
+}
