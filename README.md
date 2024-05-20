@@ -1,4 +1,4 @@
-# Peyya
+# Ionic APP
 
 This is our readme file
 
